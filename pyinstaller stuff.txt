@@ -2,16 +2,14 @@ pyinstaller ServerCustomClient.py
   --onefile
   --noconfirm
   --name "ServerModpackUpdater"
-  --add-data "settings.txt;."
+  --add-data "lightweight_updater_settings.txt;."
   --hidden-import=Helpers.JSONManipulationHelper
   --hidden-import=Helpers.ModpackSyncHelper
-  --hidden-import=Interface.CustomLauncher
   --hidden-import=Interface.DropboxInterface
   --hidden-import=Interface.ForgeInterface
   --add-data "jre;jre"
-  --noconsole
 
 
-pyinstaller ServerCustomClient.py --onefile --noconfirm --name "MCServerCustomLauncher" --add-data "settings.txt;." --hidden-import=Helpers.JSONManipulationHelper --hidden-import=Helpers.ModpackSyncHelper --hidden-import=Interface.CustomLauncher --hidden-import=Interface.DropboxInterface --hidden-import=Interface.ForgeInterface --add-data "jre;jre" --noconsole
+pyinstaller ServerCustomClient.py --onefile --noconfirm --name "MCServerCustomLauncher" --add-data "lightweight_updater_settings.txt;." --hidden-import=Helpers.JSONManipulationHelper --hidden-import=Helpers.ModpackSyncHelper --hidden-import=Interface.DropboxInterface --hidden-import=Interface.ForgeInterface --add-data "jre;jre"
 
 https://www.dropbox.com/scl/fo/7u6dwok1ag0n9y8lhvx86/AOD_k5ERPPspxWy904WGOTg?rlkey=x6kuzlx2v20a055e26z1z57ew&e=1&st=8y5fkhg4&dl=0
