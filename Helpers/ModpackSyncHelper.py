@@ -6,6 +6,7 @@ import sys
 import tempfile
 
 import GlobalVars as gv
+import JavaInstallHelper as javahelper
 
 def move_mods(source_mods_folder, minecraft_mods_folder):
     for file in os.listdir(source_mods_folder):
@@ -55,6 +56,13 @@ def is_loader_version_installed(modloader, mc_version, loader_version, installed
 def install_modloader(modloader, mc_version, loader_version, minecraft_dir=None):
     if minecraft_dir is None:
         minecraft_dir = os.path.expanduser("~/.minecraft")
+    
+    print("Running Java check...")
+    if is_java_installed():
+        print("Java is installed, proceeding...")
+    else:
+        print("Java not found. Triggering download...")
+        javahelper.install_java()
 
     temp_dir = tempfile.mkdtemp()
     print(f"Installing {modloader} for MC {mc_version} ({loader_version})...")
@@ -108,11 +116,30 @@ def _download_file(url, save_path):
         for chunk in r.iter_content(8192):
             f.write(chunk)
 
+def is_java_installed():
+    """
+    Checks if 'java' is available in the system PATH and executable.
+    Returns True if found, False otherwise.
+    """
+    # Is the java executable in PATH
+    if shutil.which("java") is None:
+        return False
+
+    # Try to run java -version command
+    try:
+        # use stderr=subprocess.STDOUT because java -version outputs to stderr historically.
+        subprocess.run(
+            ["java", "-version"], 
+            stdout=subprocess.DEVNULL, 
+            stderr=subprocess.DEVNULL, 
+            check=True
+        )
+        return True
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return False
+
 def _get_java_exec():
-    if gv.override_sys_java:
-        return gv.get_java_path_safe()
-    else:
-        return "java" if sys.platform != "win32" else "java.exe"
+    return "java" if sys.platform != "win32" else "java.exe"
 
 def install_mods_to_minecraft(extract_dir):
     mods_source_dir = extract_dir
