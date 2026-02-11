@@ -49,4 +49,4 @@ base_app_height = 200
 minecraft_green_color = "#00a914"
 
 continuous_metadata_settings_update = True
-overide_sys_java = True
+override_sys_java = True
