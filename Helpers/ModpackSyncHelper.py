@@ -6,7 +6,7 @@ import sys
 import tempfile
 
 import GlobalVars as gv
-import JavaInstallHelper as javahelper
+import Helpers.JavaInstallHelper as javahelper
 
 def move_mods(source_mods_folder, minecraft_mods_folder):
     for file in os.listdir(source_mods_folder):
