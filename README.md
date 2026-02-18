@@ -4,9 +4,9 @@ For anyone wanting to use it for their own personal ends, there is ABSOLUTELY NO
 ```json
 {
   "modset": {
-    "mc_version": "1.21.1 <or \other mc version>",
-    "modloader": "Neoforge <or \other modloader>",
-    "modloader_version": "21.1.200 <or \other modloader version>"
+    "mc_version": "1.21.1 <or other mc version>",
+    "modloader": "Neoforge <or other modloader>",
+    "modloader_version": "21.1.200 <or other modloader version>"
   }
 }
 ```
