@@ -115,11 +115,12 @@ def setup():
 
     print(modpack_url)
     try:
+        print(f"Starting modpack download from {modpack_url}...")
         pack_url = force_dropbox_folder_download(modpack_url)
     except ValueError as e:
         print(f"❌ Dropbox URL error (Please specify Dropbox URL!): {e}")
         return
-
+    
     print(pack_url)
     download_modpack(pack_url, temp_zip_file)
     extract_dir = os.path.join(temp_dir, "extract")
